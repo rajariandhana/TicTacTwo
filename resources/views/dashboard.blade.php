@@ -1,18 +1,10 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 flex flex-col">
-                    {{ __("You're logged in!") }}
-                    <span>id {{$user->id}}</span>
-                    <span>player_name {{session('player_name')}}</span>
-                    <span>player_type {{session('player_type')}}</span>
+                <div class="p-6 text-gray-900 text-center flex flex-col">
+                    <span>Hello {{session('player_name')}}, you play as {{session('player_type')}}</span>
+                    <span>Give the code <span class="text-indigo-500">{{$user->id}}</span> to your friend to join</span>
                 </div>
             </div>
         </div>

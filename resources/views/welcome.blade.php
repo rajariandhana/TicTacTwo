@@ -13,7 +13,7 @@
         <!-- Styles -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="antialiased font-sans">
+    <body class="flex h-full items-center justify-center bg-gray-100">
         @if (Route::has('login'))
             <livewire:welcome.navigation />
         @endif

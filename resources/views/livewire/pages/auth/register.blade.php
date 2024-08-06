@@ -53,9 +53,9 @@ new #[Layout('layouts.guest')] class extends Component
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-
-            <x-primary-button class="ms-4">
+        <div class="flex items-center justify-between mt-4">
+            <a href="/" class="text-red-500 mb-4">back</a>
+            <x-primary-button class="ms-3">
                 {{ __('New Game') }}
             </x-primary-button>
         </div>
