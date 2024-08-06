@@ -8,7 +8,7 @@ Route::view('/', 'welcome');
 // Route::view('dashboard', 'dashboard')
 //     ->middleware(['auth', 'verified'])
 //     ->name('dashboard');
-Route::get('/dashboard', function () {
+Route::get('/', function () {
     $user = Auth::user();
     return view('dashboard', ['user' => $user]);
 })
