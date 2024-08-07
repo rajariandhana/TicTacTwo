@@ -12,7 +12,11 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                // sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                honk: "'Honk', system-ui",
+                roboto: "'Roboto', sans-serif",
+                poppins:"'Poppins', sans-serif",
+                montserrat:"'Montserrat', sans-serif",
             },
         },
     },

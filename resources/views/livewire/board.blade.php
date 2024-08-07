@@ -9,18 +9,31 @@
             console.log(event);
             $wire.handleMessage(event);
     });
+    Echo.private('users.{{ $user->id }}')
+        .listen('Join', (event) => {
+            console.log(event);
+            $wire.handleJoin(event);
+    });
     "
     class="bg-red-50">
     <div class="flex flex-col justify-center items-center w-full p-4">
-        @if( $status == "playing")
+        {{-- @if ($status == "finish")
+            <div>
+                {{$finishMessage}}
+            </div>
+        @endif --}}
+
+        @if ($status == "waiting")
+            <span>Ask your friend to join with the code <span class="text-indigo-500">{{$user->id}}</span></span>
+        @else
             @if ($turn==$type)
                 <span> Your turn</span>
             @else
-                <span>Opponent's turn</span>
+                <span>{{$opponent_name}}'s turn</span>
             @endif
-            <div class="grid grid-cols-3 gap-1 p-4 rounded-xl bg-slate-400">
+            <div class="grid grid-cols-3 gap-4 p-4 rounded-xl bg-slate-900">
                 @foreach ($buttons as $index => $text)
-                    <button class="bg-indigo-50 size-16 text-4xl font-bold"
+                    <button class="bg-slate-800 size-28 text-8xl font-bold"
                     :class="{
                         'text-rose-500': '{{ $text }}' === 'X',
                         'text-indigo-500': '{{ $text }}' === 'O',
@@ -30,8 +43,6 @@
                     </button>
                 @endforeach
             </div>
-        @elseif ($status == "waiting")
-            <span>Ask your friend to join with the code <span class="text-indigo-500">{{$user->id}}</span></span>
         @endif
         <div class="flex w-full justify-end">
             <button class="px-4 py-2 bg-red-500 text-white rounded-md " wire:click="logout">Quit</button>
