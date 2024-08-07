@@ -57,12 +57,12 @@ new #[Layout('layouts.guest')] class extends Component
     <form wire:submit="login">
         <div class="mb-4">
             <x-input-label for="name" :value="__('Name')" />
-            <x-text-input wire:model="name" id="name" class="block mt-1 w-full" type="text" name="name" required autofocus />
+            <x-text-input wire:model="name" id="name" class="" type="text" name="name" required autofocus />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
         <div class="mb-4">
             <x-input-label for="userID" :value="__('Code')" />
-            <x-text-input wire:model="userID" id="userID" class="block mt-1 w-full" type="text" name="userID" required autofocus />
+            <x-text-input wire:model="userID" id="userID" class="" type="text" name="userID" required autofocus />
             <x-input-error :messages="$errors->get('userID')" class="mt-2" />
         </div>
 
