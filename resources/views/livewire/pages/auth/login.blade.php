@@ -70,7 +70,7 @@ new #[Layout('layouts.guest')] class extends Component
             <x-primary-button class="">
                 {{ __('Join Game') }}
             </x-primary-button>
-            <a href="/register" class="text-red-500 text-sm">new game instead</a>
+            <a href="/newgame" class="text-indigo-500 text-sm">create new game instead</a>
         </div>
     </form>
 </div>
