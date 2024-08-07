@@ -3,23 +3,25 @@
 namespace App\Events;
 
 use App\Models\User;
+use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class Message implements ShouldBroadcastNow
+class Join implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
      * Create a new event instance.
      */
-    public function __construct(public User $user, public string $name, public string $type, public string $cell)
+    public function __construct(public User $user, public string $name, public string $message)
     {
         //
-        // dump($user->id);
     }
 
     /**
@@ -31,7 +33,6 @@ class Message implements ShouldBroadcastNow
     {
         return [
             new PrivateChannel("users.{$this->user->id}"),
-            // new Channel('chat'),
         ];
     }
 }
