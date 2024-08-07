@@ -55,22 +55,22 @@ new #[Layout('layouts.guest')] class extends Component
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
     <form wire:submit="login">
-        <div>
+        <div class="mb-4">
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input wire:model="name" id="name" class="block mt-1 w-full" type="text" name="name" required autofocus />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
-        <div>
+        <div class="mb-4">
             <x-input-label for="userID" :value="__('Code')" />
             <x-text-input wire:model="userID" id="userID" class="block mt-1 w-full" type="text" name="userID" required autofocus />
             <x-input-error :messages="$errors->get('userID')" class="mt-2" />
         </div>
 
-        <div class="flex items-center justify-between mt-4">
-            <a href="/" class="text-red-500 mb-4">back</a>
-            <x-primary-button class="ms-3">
-                {{ __('Join') }}
+        <div class="flex flex-col justify-center items-center mt-4 gap-4">
+            <x-primary-button class="">
+                {{ __('Join Game') }}
             </x-primary-button>
+            <a href="/register" class="text-red-500 text-sm">new game instead</a>
         </div>
     </form>
 </div>
