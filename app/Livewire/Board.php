@@ -47,6 +47,9 @@ class Board extends Component
         ];
         $this->finish = false;
         $this->status = 'playing';
+        if($this->type == 'O'){
+            broadcast(new Join($this->user, $this->name ,"O sets"));
+        }
     }
 
     public function click($cell){
@@ -68,8 +71,16 @@ class Board extends Component
             $this->GameInit($message['name']);
             // broadcast(new Join($this->user, $this->name ,"X sets"));
         }
-        else if($message['message']== $this->opponent_type." leaves"){
+        else if($this->type == "X" && $message['message']=="O sets"){
+            // dump("here");
+            $this->GameInit($message['name']);
+        }
+        else if($message['message']== "leaves"){
             $this->status = "opponent leaves";
+            Auth::guard('web')->logout();
+            Session::invalidate();
+            Session::regenerateToken();
+            $this->redirect('/');
         }
         // else if($message['message'] == "O joins"){
         //     $this->GameInit();
@@ -90,9 +101,9 @@ class Board extends Component
             $this->finish = true;
             $this->status = "finish";
 
-            $finishMessage =  ($this->winner == $this->type) ? "You win!" : "You lost :(";
+            $this->finishMessage =  ($this->winner == $this->type) ? "Congrats you win!" : $this->opponent_name . " wins";
         }
-        if($message['type']==$this->type) $this->turn = $this->opponent_type;
+        else if($message['type']==$this->type) $this->turn = $this->opponent_type;
         else $this->turn = $this->type;
 
     }
@@ -107,13 +118,11 @@ class Board extends Component
         return ($b[$i] == $b[$j] && $b[$j] == $b[$k] && $b[$k] != 'E');
     }
     public function logout(){
-        broadcast(new Join($this->user, $this->name ,$this->type . " leaves"));
+        broadcast(new Join($this->user, $this->name ,"leaves"));
         //delete User ID
-        Auth::guard('web')->logout();
-
-        Session::invalidate();
-        Session::regenerateToken();
-        $this->redirect('/register', navigate: true);
+    }
+    public function play(){
+        $this->redirect('/', navigate: true);
     }
     public function render()
     {

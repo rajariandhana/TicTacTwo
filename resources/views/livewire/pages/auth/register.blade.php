@@ -49,7 +49,7 @@ new #[Layout('layouts.guest')] class extends Component
         <!-- Name -->
         <div class="mb-4">
             <x-input-label for="name" :value="__('Name')" />
-            <x-text-input wire:model="name" id="name" class="block mt-1 w-full" type="text" name="name" required autofocus/>
+            <x-text-input wire:model="name" id="name" class="" type="text" name="name" required autofocus/>
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
@@ -57,7 +57,7 @@ new #[Layout('layouts.guest')] class extends Component
             <x-primary-button class="">
                 {{ __('New Game') }}
             </x-primary-button>
-            <a href="/login" class="text-red-500 text-sm">Already have a code? join instead</a>
+            <a href="/join" class="text-indigo-500 text-sm">Already have a code? join instead</a>
         </div>
     </form>
 </div>
